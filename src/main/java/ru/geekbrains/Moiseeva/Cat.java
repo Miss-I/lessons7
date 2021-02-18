@@ -5,6 +5,9 @@ public class Cat {
     private int appetite;
     private boolean hungry;
 
+    public boolean isHungry() {
+        return hungry;
+    }
 
     public Cat(String name) {
         this.name = name;
@@ -13,19 +16,25 @@ public class Cat {
     }
 
     public void eat(Plate p) {
-        if (appetite > p.getFood()){
+        if (appetite > p.getFood()) {
             System.out.println("Кот не может покушать из этой тарелки, недостаточное количество еды");
-        } else if(appetite <= p.getFood()){
+            while ((hungry == true)) {
+                System.out.println("Насыпали еще еды");
+                p.fillMax();
+                p.decreaseFood(appetite);
+                hungry = false;
+            }
+        } else if (appetite <= p.getFood()) {
             p.decreaseFood(appetite);
             hungry = false;
         }
     }
 
-    public void info(){
+    public void info() {
         System.out.print(name + " : ");
         if (hungry == true) {
             System.out.println("голодный");
-        } else if(hungry == false){
+        } else if (hungry == false) {
             System.out.println("покушал");
         }
     }
